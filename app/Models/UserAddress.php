@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class UserAddress extends Model
 {
-    use HasFactory;
+    use HasFactory,Cachable;
     
     protected $table = 'user_adresses';
     

@@ -14,8 +14,13 @@ class FrondEndController extends Controller
 {
     public function homepage()
     {
+        if(cache()->has('users')){
+            $users=cache()->get('users');
+        }else{
         // $users=User::active()->latest()->limit(10)->skip(5)->get();
-        $users=User::withCount('orders')->withTrashed()->paginate(10);
+            $users=User::withCount('orders')->withTrashed()->paginate(10);
+            cache()->put('users',$users);
+        }
         return view('welcome',compact('users'));
     }
     public function aboutus()
@@ -45,6 +50,7 @@ class FrondEndController extends Controller
             'dob'=>request('dob'),
             'status'=>request('status')
         ]);
+        cache()->forget('users');
         // $user=new User();
         // $user->name=$name;
         // $user->email=$email;
