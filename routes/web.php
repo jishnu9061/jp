@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('subhome','FrondEndController@subhome')->name('subhome');
+Route::post('submit','FrondEndController@submit')->name('submit');
 Route::get('login','LoginController@login')->name('login');
 Route::post('do-login','LoginController@dologin')->name('do.login');
 

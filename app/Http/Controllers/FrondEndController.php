@@ -6,8 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 
+use App\Mail\UserCreatedMail;
+
 use App\Models\UserAddress;
 
+use App\Events\NewuserCreated;
+
+use App\Models\UserMobile;
+
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 
 class FrondEndController extends Controller
@@ -44,13 +51,15 @@ class FrondEndController extends Controller
             'dob' => 'required'
         ]);
         
-        User::create([
+        $user=User::create([
             'name'=>request('name'),
             'email'=>request('email'),
             'dob'=>request('dob'),
             'status'=>request('status')
         ]);
+        
         cache()->forget('users');
+        Mail::to($user->email)->send(new UserCreatedMail($user));
         // $user=new User();
         // $user->name=$name;
         // $user->email=$email;
@@ -120,5 +129,19 @@ class FrondEndController extends Controller
         $user=User::find(decrypt($user_id));
         return view('users.view',compact('user'));
     }
+    public function subhome()
+    {
+       return view('home');
+    }
 
+    public function submit()
+    {
+       $user=UserMobile::create([
+        'name' => request('name'),
+        'email' => request('email'), 
+        'mobile' => request('mobile')
+       ]);
+       NewuserCreated::dispatch($user);
+       return $user;
+    }
 }
