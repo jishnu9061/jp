@@ -22,7 +22,7 @@
         <tbody>
             @foreach($users as $data)
           <tr>
-            <th scope="row">{{$users->firstItem() + $loop->index}}</th>
+            <th scope="row">{{ $data->user_id}}</th>
             <td>{{ $data->name }}</td>
             <td>{{ $data->email }}</td>
             <td>{{ $data->orders_count }}</td>
