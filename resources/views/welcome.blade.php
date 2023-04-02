@@ -8,6 +8,7 @@
      <h1>Welcome {{ auth()->user()->name }}</h1>
     <a href="{{ route('create.user') }}" class="btn btn-primary" >New</a>
     <a href="{{ route('logout.user') }}" class="btn btn-danger" >Logout</a>
+    <a href="{{ route('export') }}" class="btn btn-success" >Export</a>
     <table class="table">
         <thead>
           <tr>

@@ -14,6 +14,8 @@ use App\Events\NewuserCreated;
 
 use App\Models\UserMobile;
 
+use Rap2hpoutre\FastExcel\FastExcel;
+
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 
@@ -143,5 +145,16 @@ class FrondEndController extends Controller
        ]);
        NewuserCreated::dispatch($user);
        return $user;
+    }
+    public function export()
+    {
+        $users=User::all();
+        return (new FastExcel($users))->download('users_export.xlsx',function($user){
+            return [
+                'name' => $users->name,
+                'email' => $users->email,
+                'status' => $users->status_text,
+            ];
+        });
     }
 }

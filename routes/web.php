@@ -31,5 +31,6 @@ Route::group(['middleware'=>'user_auth'],function(){
     Route::post('save-user','FrondEndController@save')->name('save.user');
     Route::get('about-us','FrondEndController@aboutus')->name('about');
     Route::get('contact-us','FrondEndController@contactus')->name('contact');
+    Route::get('export','FrondEndController@export')->name('export');
 });
 
