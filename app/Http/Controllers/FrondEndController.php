@@ -61,7 +61,8 @@ class FrondEndController extends Controller
         ]);
         
         cache()->forget('users');
-        Mail::to($user->email)->send(new UserCreatedMail($user));
+        NewuserCreated::dispatch($user);
+        return "event fired";
         // $user=new User();
         // $user->name=$name;
         // $user->email=$email;
