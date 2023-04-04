@@ -17,6 +17,8 @@ Route::get('subhome','FrondEndController@subhome')->name('subhome');
 Route::post('submit','FrondEndController@submit')->name('submit');
 Route::get('login','LoginController@login')->name('login');
 Route::post('do-login','LoginController@dologin')->name('do.login');
+Route::get('admin/login','AdminController@login')->name('admin.login');
+Route::post('admin/do-login','AdminController@dologin')->name('admin.do.login');
 
 Route::group(['middleware'=>'user_auth'],function(){
     Route::get('/','FrondEndController@homepage')->name('home');
