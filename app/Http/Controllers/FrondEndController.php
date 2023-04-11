@@ -53,16 +53,18 @@ class FrondEndController extends Controller
             'dob' => 'required'
         ]);
         
-        $user=User::create([
+        $user=[
             'name'=>request('name'),
             'email'=>request('email'),
             'dob'=>request('dob'),
             'status'=>request('status')
-        ]);
+        ];
         
         cache()->forget('users');
-        NewuserCreated::dispatch($user);
-        return "event fired";
+        
+       User::withoutEvents(function() use($user){
+        User::create($user);
+       });
         // $user=new User();
         // $user->name=$name;
         // $user->email=$email;
