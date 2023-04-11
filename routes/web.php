@@ -35,5 +35,6 @@ Route::group(['middleware'=>'user_auth'],function(){
     Route::get('contact-us','FrondEndController@contactus')->name('contact');
     Route::get('export','FrondEndController@export')->name('export');
     Route::get('admin','LoginController@admin')->name('admin');
+    Route::get('pdf','FrondEndController@pdf')->name('pdf');
 });
 

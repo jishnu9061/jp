@@ -18,6 +18,9 @@ use Rap2hpoutre\FastExcel\FastExcel;
 
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
+use Barryvdh\DomPDF\Facade\Pdf;
+
+use App;
 
 class FrondEndController extends Controller
 {
@@ -159,5 +162,14 @@ class FrondEndController extends Controller
                 'status' => $users->status_text,
             ];
         });
+    }
+    public function pdf()
+    {
+        $users=User::get()->toArray();
+        // $pdf = App::make('dompdf.wrapper');
+        // $pdf->loadHTML($users);
+        // return $pdf->stream();
+        $pdf = Pdf::loadView('pdf.invoice', ['users'=>$users]);
+        return $pdf->download('invoice.pdf');
     }
 }
