@@ -2,7 +2,7 @@
 @section('title','New User')
 @section('content')
 <div class="container">
-    <form action="{{ route('save.user') }}" method="post">
+    <form action="{{ route('save.user') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
@@ -18,6 +18,10 @@
           <label for="dob">Date Of Birth:</label>
           <input type="text" name="dob" class="form-control">
           @error('dob')<p class="alert-danger">{{ $message }}</p>@enderror
+        </div>
+        <div class="form-group">
+          <label for="image">Image</label>
+          <input type="file" name="image" class="form-control">
         </div>
         <br>
         <div class="checkbox">

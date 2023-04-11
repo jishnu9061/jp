@@ -17,6 +17,7 @@
           <label for="dob">Date Of Birth:</label>
           <input type="text" name="dob" class="form-control" value="{{ $user->dob }}">
         </div>
+        <img src="{{asset('storage/'.$user->image)}}" class="profilePic" alt="">
         <br>
         <div class="checkbox">
           <label> Status</label>

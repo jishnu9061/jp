@@ -56,18 +56,24 @@ class FrondEndController extends Controller
             'dob' => 'required'
         ]);
         
-        $user=[
+        $input=[
             'name'=>request('name'),
             'email'=>request('email'),
             'dob'=>request('dob'),
             'status'=>request('status')
         ];
+        if(request()->hasFile('image')){
+           $extension=request('image')->extension();
+           $fileName='user_pic'.time().'.'.$extension;
+           request('image')->storeAs('images',$fileName);
+           $input['image'] = 'images/' . $fileName;
+        }
+        // cache()->forget('users');
+        $user=User::create($input);
         
-        cache()->forget('users');
-        
-       User::withoutEvents(function() use($user){
-        User::create($user);
-       });
+    //    User::withoutEvents(function() use($user){
+    //     User::create($user);
+    //    });
         // $user=new User();
         // $user->name=$name;
         // $user->email=$email;
