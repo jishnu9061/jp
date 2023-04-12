@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+use App\Jobs\NewUserJob;
+
 use App;
 
 class FrondEndController extends Controller
@@ -68,8 +70,13 @@ class FrondEndController extends Controller
            request('image')->storeAs('images',$fileName);
            $input['image'] = 'images/' . $fileName;
         }
+        
         // cache()->forget('users');
         $user=User::create($input);
+
+        NewUserJob::dispatch($user);
+
+        
         
     //    User::withoutEvents(function() use($user){
     //     User::create($user);
