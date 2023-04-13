@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,10 @@ Route::get('login','LoginController@login')->name('login');
 Route::post('do-login','LoginController@dologin')->name('do.login');
 Route::get('admin/login','AdminController@login')->name('admin.login');
 Route::post('admin/do-login','AdminController@dologin')->name('admin.do.login');
+Route::get('forgot-password','LoginController@forgotPassword')->name('forgot');
+Route::post('reset-password','LoginController@resetPassword')->name('reset');
+Route::get('password/{token}','LoginController@password')->name('password');
+Route::post('confirmpass','LoginController@confirmpass')->name('confirmpass');
 
 Route::group(['middleware'=>'user_auth'],function(){
     Route::get('/','FrondEndController@homepage')->name('home');

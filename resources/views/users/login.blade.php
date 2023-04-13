@@ -2,8 +2,8 @@
 ...
 <div class="login-pf-page">
 
-    
-    
+
+
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
@@ -23,7 +23,7 @@
                   <option>Italian</option>
                 </select>
                 <h1>Log In to Your Account</h1>
-                <h6>@if(session()->has('message')) {{session()->get('message')}}@endif</h6> 
+                <h6>@if(session()->has('message')) {{session()->get('message')}}@endif</h6>
               </header>
               <form action="{{ route('do.login') }}" method="post">
                 @csrf
@@ -40,13 +40,13 @@
                       <label class="checkbox-label">
                         <input type="checkbox"> Keep me logged in for 30 days
                       </label>
-                      <a href="#">Forgot password?</a>
+                      <a href="{{ route('forgot') }}">Forgot password?</a>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block btn-lg">Log In</button>
               </form>
               <p class="login-pf-signup">Need an account?<a href="#">Sign up</a></p>
             </div><!-- card -->
-            
+
             <footer class="login-pf-page-footer">
               <ul class="login-pf-page-footer-links list-unstyled">
                 <li><a class="login-pf-page-footer-link" href="#">Terms of Use</a></li>
@@ -62,4 +62,3 @@
 </div><!-- login-pf-page -->
 
 </html>
-  
