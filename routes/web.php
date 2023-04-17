@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::get('forgot-password','LoginController@forgotPassword')->name('forgot');
 Route::post('reset-password','LoginController@resetPassword')->name('reset');
 Route::get('password/{token}','LoginController@password')->name('password');
 Route::post('confirmpass','LoginController@confirmpass')->name('confirmpass');
+Route::get('employee','EmployeeController@index')->name('employee');
 
 Route::group(['middleware'=>'user_auth'],function(){
     Route::get('/','FrondEndController@homepage')->name('home');
